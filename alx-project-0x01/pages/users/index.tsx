@@ -21,12 +21,12 @@ const UsersPage = () => {
           Add User
         </button>
       </div>
-
       <UserModal
-        isOpen={isModalOpen}
-        onClose={() => setIsModalOpen(false)}
-        onAddUser={handleAddUser}
-      />
+  isOpen={isModalOpen}
+  onClose={() => setIsModalOpen(false)}
+  onSubmit={handleAddUser}
+/>
+
 
       {users.length === 0 ? (
         <p>No users added yet.</p>
