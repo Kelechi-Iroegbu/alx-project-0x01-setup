@@ -1,95 +1,97 @@
-import { PostData, PostModalProps } from "@/interfaces";
-import React, { useState } from "react";
+import { useState } from "react";
+import { UserData, UserModalProps } from "@/interfaces";
 
-const PostModal: React.FC<PostModalProps> = ({ onClose, onSubmit }) => {
-  const [post, setPost] = useState<PostData>({
-    userId: 1,
-    title: "",
-    body: ""
-  });
+const UserModal: React.FC<UserModalProps> = ({
+  isOpen,
+  onClose,
+  onAddUser,
+}) => {
+  const [name, setName] = useState("");
+  const [username, setUsername] = useState("");
+  const [email, setEmail] = useState("");
 
-  const handleChange = (
-    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
-  ) => {
-    const { name, value } = e.target;
-    setPost((prevPost) => ({ ...prevPost, [name]: value }));
-  };
+  if (!isOpen) return null;
 
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    onSubmit(post);
+  const handleSubmit = () => {
+    const newUser: UserData = {
+      id: Math.floor(Math.random() * 10000),
+      name,
+      username,
+      email,
+      phone: "",
+      website: "",
+      address: {
+        street: "",
+        suite: "",
+        city: "",
+        zipcode: "",
+        geo: {
+          lat: "",
+          lng: "",
+        },
+      },
+      company: {
+        name: "",
+        catchPhrase: "",
+        bs: "",
+      },
+    };
+
+    onAddUser(newUser);
     onClose();
+    setName("");
+    setUsername("");
+    setEmail("");
   };
 
   return (
-    <div className="fixed inset-0 bg-gray-900 bg-opacity-50 flex justify-center items-center">
-      <div className="bg-white rounded-lg p-8 shadow-lg w-full max-w-md">
-        <h2 className="text-2xl font-bold mb-4 text-gray-800">
-          Add New Post
+    <div className="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center z-50">
+      <div className="bg-white rounded-lg p-6 w-[90%] max-w-md shadow-lg">
+        <h2 className="text-2xl font-semibold mb-4 text-center">
+          Add New User
         </h2>
 
-        <form onSubmit={handleSubmit}>
-          <div className="mb-4">
-            <label className="block text-gray-700 font-medium mb-2">
-              User ID
-            </label>
-            <input
-              type="number"
-              name="userId"
-              value={post.userId}
-              onChange={handleChange}
-              className="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-blue-500"
-            />
-          </div>
+        <input
+          type="text"
+          placeholder="Full Name"
+          className="w-full border p-2 rounded mb-3"
+          value={name}
+          onChange={(e) => setName(e.target.value)}
+        />
 
-          <div className="mb-4">
-            <label className="block text-gray-700 font-medium mb-2">
-              Title
-            </label>
-            <input
-              type="text"
-              name="title"
-              value={post.title}
-              onChange={handleChange}
-              className="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-blue-500"
-              placeholder="Enter post title"
-            />
-          </div>
+        <input
+          type="text"
+          placeholder="Username"
+          className="w-full border p-2 rounded mb-3"
+          value={username}
+          onChange={(e) => setUsername(e.target.value)}
+        />
 
-          <div className="mb-4">
-            <label className="block text-gray-700 font-medium mb-2">
-              Body
-            </label>
-            <textarea
-              name="body"
-              value={post.body}
-              onChange={handleChange}
-              rows={4}
-              className="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-blue-500"
-              placeholder="Enter post content"
-            />
-          </div>
+        <input
+          type="email"
+          placeholder="Email"
+          className="w-full border p-2 rounded mb-4"
+          value={email}
+          onChange={(e) => setEmail(e.target.value)}
+        />
 
-          <div className="flex justify-between items-center">
-            <button
-              type="button"
-              onClick={onClose}
-              className="text-gray-600 hover:text-gray-800"
-            >
-              Cancel
-            </button>
-
-            <button
-              type="submit"
-              className="px-6 py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600"
-            >
-              Add Post
-            </button>
-          </div>
-        </form>
+        <div className="flex justify-end gap-3">
+          <button
+            className="px-4 py-2 bg-gray-300 rounded"
+            onClick={onClose}
+          >
+            Cancel
+          </button>
+          <button
+            className="px-4 py-2 bg-blue-600 text-white rounded"
+            onClick={handleSubmit}
+          >
+            Add User
+          </button>
+        </div>
       </div>
     </div>
   );
 };
 
-export default PostModal;
+export default UserModal;
