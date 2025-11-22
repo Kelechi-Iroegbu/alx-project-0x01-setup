@@ -13,7 +13,7 @@ export interface UserData {
     geo: {
       lat: string;
       lng: string;
-    }
+    };
   };
   phone: string;
   website: string;
@@ -27,5 +27,5 @@ export interface UserData {
 export interface UserModalProps {
   isOpen: boolean;
   onClose: () => void;
-  onSubmit: (user: UserData) => void;   // ← required field
+  onSubmit: (user: UserData) => void;  // <-- Correct typing
 }
