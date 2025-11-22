@@ -27,5 +27,5 @@ export interface UserData {
 export interface UserModalProps {
   isOpen: boolean;
   onClose: () => void;
-  onSubmit: (user: UserData) => void;   // ✔ Correct, required, and accepted
+  onSubmit: (post: UserProps) => void;   // ✔ Correct, required, and accepted
 }
