@@ -28,64 +28,52 @@ const UserModal: React.FC<UserModalProps> = ({ isOpen, onClose, onSubmit }) => {
     },
   });
 
-  const updateField = (field: string, value: any) => {
+  const update = (field: keyof UserData, value: any) => {
     setFormData({ ...formData, [field]: value });
   };
 
-  const handleSubmit = () => {
-    onSubmit(formData);
+  const submit = () => {
+    onSubmit(formData); // ✔ Correct
     onClose();
   };
 
   return (
-    <div className="fixed inset-0 bg-black/40 flex items-center justify-center z-50">
-      <div className="bg-white w-[500px] p-6 rounded shadow-lg">
+    <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50">
+      <div className="bg-white w-[450px] rounded p-6 shadow-lg">
         <h2 className="text-2xl mb-4">Add New User</h2>
 
         <div className="flex flex-col gap-3">
-
           <input
-            type="text"
+            className="border p-2 rounded"
             placeholder="Name"
-            className="border p-2 rounded"
-            onChange={(e) => updateField("name", e.target.value)}
+            onChange={(e) => update("name", e.target.value)}
           />
-
           <input
-            type="text"
+            className="border p-2 rounded"
             placeholder="Username"
-            className="border p-2 rounded"
-            onChange={(e) => updateField("username", e.target.value)}
+            onChange={(e) => update("username", e.target.value)}
           />
-
           <input
-            type="email"
+            className="border p-2 rounded"
             placeholder="Email"
-            className="border p-2 rounded"
-            onChange={(e) => updateField("email", e.target.value)}
+            onChange={(e) => update("email", e.target.value)}
           />
-
           <input
-            type="text"
+            className="border p-2 rounded"
             placeholder="Phone"
-            className="border p-2 rounded"
-            onChange={(e) => updateField("phone", e.target.value)}
+            onChange={(e) => update("phone", e.target.value)}
           />
-
           <input
-            type="text"
-            placeholder="Website"
             className="border p-2 rounded"
-            onChange={(e) => updateField("website", e.target.value)}
+            placeholder="Website"
+            onChange={(e) => update("website", e.target.value)}
           />
 
-          {/* Address */}
           <h3 className="font-semibold mt-3">Address</h3>
 
           <input
-            type="text"
-            placeholder="Street"
             className="border p-2 rounded"
+            placeholder="Street"
             onChange={(e) =>
               setFormData({
                 ...formData,
@@ -95,9 +83,8 @@ const UserModal: React.FC<UserModalProps> = ({ isOpen, onClose, onSubmit }) => {
           />
 
           <input
-            type="text"
-            placeholder="Suite"
             className="border p-2 rounded"
+            placeholder="Suite"
             onChange={(e) =>
               setFormData({
                 ...formData,
@@ -105,58 +92,19 @@ const UserModal: React.FC<UserModalProps> = ({ isOpen, onClose, onSubmit }) => {
               })
             }
           />
-
-          <input
-            type="text"
-            placeholder="City"
-            className="border p-2 rounded"
-            onChange={(e) =>
-              setFormData({
-                ...formData,
-                address: { ...formData.address, city: e.target.value },
-              })
-            }
-          />
-
-          <input
-            type="text"
-            placeholder="Zipcode"
-            className="border p-2 rounded"
-            onChange={(e) =>
-              setFormData({
-                ...formData,
-                address: { ...formData.address, zipcode: e.target.value },
-              })
-            }
-          />
-
-          {/* Company */}
-          <h3 className="font-semibold mt-3">Company</h3>
-
-          <input
-            type="text"
-            placeholder="Company Name"
-            className="border p-2 rounded"
-            onChange={(e) =>
-              setFormData({
-                ...formData,
-                company: { ...formData.company, name: e.target.value },
-              })
-            }
-          />
         </div>
 
-        <div className="mt-6 flex justify-end gap-3">
+        <div className="flex justify-end gap-3 mt-6">
           <button
+            className="px-4 py-2 rounded bg-gray-200 hover:bg-gray-300"
             onClick={onClose}
-            className="px-4 py-2 border rounded hover:bg-gray-100"
           >
             Cancel
           </button>
 
           <button
-            onClick={handleSubmit}
-            className="px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700"
+            className="px-4 py-2 rounded bg-blue-600 text-white hover:bg-blue-700"
+            onClick={submit}
           >
             Save User
           </button>
