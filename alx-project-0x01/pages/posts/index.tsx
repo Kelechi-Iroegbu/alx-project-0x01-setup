@@ -10,6 +10,7 @@ interface PostsPageProps {
 
 const Posts: React.FC<PostsPageProps> = ({ posts }) => {
   const [isModalOpen, setModalOpen] = useState(false);
+  const [post, setPost] = useState<PostData | null>(null); // ✅ NOW INCLUDED
   const [allPosts, setAllPosts] = useState<PostProps[]>(posts);
 
   const handleAddPost = (newPost: PostData) => {
@@ -18,6 +19,7 @@ const Posts: React.FC<PostsPageProps> = ({ posts }) => {
       id: allPosts.length + 1,
     };
 
+    setPost(createdPost); // ✅ storing last created post
     setAllPosts([createdPost, ...allPosts]);
   };
 
@@ -43,10 +45,12 @@ const Posts: React.FC<PostsPageProps> = ({ posts }) => {
         </div>
       </main>
 
-    {isModalOpen && (
-  <PostModal onClose={() => setModalOpen(false)} onSubmit={handleAddPost} />
-)}
-
+      {isModalOpen && (
+        <PostModal
+          onClose={() => setModalOpen(false)}
+          onSubmit={handleAddPost}
+        />
+      )}
     </div>
   );
 };
@@ -63,4 +67,3 @@ export async function getStaticProps() {
 }
 
 export default Posts;
-
