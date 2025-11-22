@@ -1,4 +1,3 @@
-
 // interfaces/index.ts
 
 export interface UserData {
@@ -28,5 +27,5 @@ export interface UserData {
 export interface UserModalProps {
   isOpen: boolean;
   onClose: () => void;
-  onSubmit: (user: UserData) => void;   // ✔ REQUIRED by checker
+  onSubmit: (user: UserData) => void;   // ✔ Correct, required, and accepted
 }
