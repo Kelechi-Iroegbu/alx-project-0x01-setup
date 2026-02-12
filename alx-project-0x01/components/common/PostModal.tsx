@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { UserData, UserModalProps } from "@/interfaces";
 import { PostData, PostModalProps }
-
+<PostData>
 const UserModal: React.FC<UserModalProps> = ({
   isOpen,
   onClose,
