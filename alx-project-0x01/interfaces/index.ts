@@ -32,3 +32,4 @@ export interface UserModalProps {
   onClose: () => void;
   onSubmit: (post: UserProps) => void;   // ✔ Correct, required, and accepted
 }
+export interface UserProps
