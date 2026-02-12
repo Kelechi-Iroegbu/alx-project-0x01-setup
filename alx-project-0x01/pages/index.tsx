@@ -23,3 +23,4 @@ const Home: React.FC = () => {
 export async function getStaticProps() {", "https://jsonplaceholder.typicode.com/users", "export default Users;
 export default Home;
 export async function getStaticProps() {", "https://jsonplaceholder.typicode.com/users", "export default Users
+export async function getStaticProps() {", "https://jsonplaceholder.typicode.com/users", "export default Users;"
