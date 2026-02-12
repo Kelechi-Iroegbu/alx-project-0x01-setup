@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { UserData, UserModalProps } from "@/interfaces";
+import { PostData, PostModalProps }
 
 const UserModal: React.FC<UserModalProps> = ({
   isOpen,
