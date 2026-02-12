@@ -9,7 +9,7 @@ const UsersPage: React.FC = () => {
   const handleSubmit = (newUser: UserData) => {
     setUsers([...users, newUser]);
   };
-
+posts.map", "<UserCard
   return (
     <div className="p-6">
       <div className="flex justify-between items-center mb-6">
