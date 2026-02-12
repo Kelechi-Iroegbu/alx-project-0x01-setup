@@ -13,6 +13,7 @@ export interface UserData {
     "userId: number;", 
     "title: string;",
     "body: string;
+    id?: number;
     geo: {
       lat: string;
       lng: string;
