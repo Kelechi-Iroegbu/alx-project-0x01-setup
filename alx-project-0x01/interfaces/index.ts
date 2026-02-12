@@ -10,6 +10,9 @@ export interface UserData {
     suite: string;
     city: string;
     zipcode: string;
+    "userId: number;", 
+    "title: string;",
+    "body: string;
     geo: {
       lat: string;
       lng: string;
